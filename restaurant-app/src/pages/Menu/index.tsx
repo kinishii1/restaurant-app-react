@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 import Search from './Search';
 import { useState } from 'react';
 import Filters from '../Filters';
+import Ordenator from './Ordernator';
+import Itens from '../Itens';
 
 // Styles for the Menu component
 
@@ -40,12 +42,22 @@ const StyledMenu = styled.div`
   }
 `;
 
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px ;
+`;
+
 
 // The Menu component
 
 function Menu() {
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState<number | null>(null);
+  const [filter, setFilter] = useState<number | null >(null);
+  const [order, setOrder] = useState<string>('');
+
+  console.log(order);
   
 
   const handleSearch = (value: string) => {
@@ -70,17 +82,28 @@ function Menu() {
       <Search 
       search={search}
       handleSearch={handleSearch}
+      placeholder="Buscar por nome do prato"
       />
 
-      <div>
+      <h3>Filtros</h3>
+      <Flex>
         <Filters
         filter={filter}
         setFilter={setFilter}
         />
-      </div>
+        <Ordenator 
+        order={order}
+        setOrder={setOrder}
+        />
+      </Flex>
 
+      <Itens 
+      search={search}
+      filter={filter}
+      order={order}
+      />
     </section>
-
+    
 
     </StyledMenu>
   );

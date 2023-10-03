@@ -1,11 +1,6 @@
 import { CgSearch } from "react-icons/cg";
 import { styled } from "styled-components";
 
-// Types for the Search component
-type Props = {
-  search: string;
-  handleSearch: (value: string) => void;
-};
 
 // Styles for the Search component
 const StyledSearch = styled.div`
@@ -28,6 +23,10 @@ background-color: #cc3d3d;
     color: #fff;
   }
 
+  input::placeholder {
+    color: #ffffff6c;
+  }
+
   svg {
     margin-left: 10px;
     color: #fff;
@@ -36,11 +35,20 @@ background-color: #cc3d3d;
 
 `;
 
+// Types for the Search component
+type Props = {
+  search: string;
+  handleSearch: (value: string) => void;
+  placeholder: string;
+};
+
+
 // The Search component
-function Search({ search, handleSearch }: Props) {
+function Search({ search, handleSearch, placeholder }: Props) {
   return (
     <StyledSearch>
       <input
+        placeholder={placeholder}
         type="text"
         value={search}
         onChange={(event) => handleSearch(event.target.value)}

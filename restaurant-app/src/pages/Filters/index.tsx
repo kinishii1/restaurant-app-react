@@ -5,7 +5,7 @@ const StyledFilters = styled.div`
   width: 50%;
   display: flex;
   justify-content: center;
-  margin: 40px auto;
+  margin: 10px auto;
   background-color: #d37d24;
   padding: 20px 0;
   border-radius: 10px;
@@ -33,10 +33,13 @@ interface FiltersProps {
 }
 
 function Filters({ filter, setFilter }: FiltersProps) {
-  const clickHandler = (option: Filter) => {
-    return setFilter(option.id);
+  const clickHandler = (filterOption: Filter) => {
+    if (filter === filterOption.id) {
+      setFilter(null);
+    } else {
+      setFilter(filterOption.id);
+    }
   };
-
   return (
     <StyledFilters>
       {filters.map((filterOption) => (
